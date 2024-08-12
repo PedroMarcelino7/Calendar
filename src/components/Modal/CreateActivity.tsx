@@ -1,3 +1,4 @@
+import Priority from '../Priority'
 import styles from './CreateActivity.module.css'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 
@@ -19,6 +20,8 @@ export default function CreateActivity() {
 
                     <input type="text" placeholder='Title' />
                     <textarea placeholder='Descrição' rows={5} />
+
+                    <Priority />
                 </form>
             </div>
         </div>
