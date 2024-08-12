@@ -1,0 +1,10 @@
+.activity_card {
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    border-radius: 15px;
+}

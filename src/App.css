@@ -1,24 +1,55 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .viewport {
     display: flex;
     justify-content: center;
-    background-color: green;
-}
 
-.calendar_container{
-    width: 50%;
-    background-color: red;
-}
+    .calendar_container {
+        width: 50%;
+    }
 
-.activities_container{
-    width: 50%;
-    background-color: blue;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    .activities_container {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .activity_box {
+            width: 75%;
+            padding-block: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+
+            .utilities {
+                display: flex;
+                justify-content: end;
+                width: 100%;
+
+                .utility_box {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.5rem;
+                    border-radius: 10px;
+                    background-color: rgba(0, 0, 0, 0.2);
+
+                    transition: all 0.3s;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.5);
+                    }
+                }
+            }
+
+            .activities {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+        }
+    }
 }

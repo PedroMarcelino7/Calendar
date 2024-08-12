@@ -1,6 +1,9 @@
 import './App.css'
-import Calendar from './components/Calendar'
+
 import TuneIcon from '@mui/icons-material/Tune';
+
+import Activity from './components/ActivityCard/Activity';
+import Calendar from './components/Calendar'
 
 function App() {
   return (
@@ -10,8 +13,18 @@ function App() {
       </div>
 
       <div className="activities_container">
-        <div className="utilities">
-          <TuneIcon />
+        <div className="activity_box">
+          <div className="utilities">
+            <div className="utility_box">
+              <TuneIcon sx={{ fontSize: '2rem' }} />
+            </div>
+          </div>
+
+          <div className="activities">
+            <Activity />
+            <Activity />
+            <Activity />
+          </div>
         </div>
       </div>
     </div>
