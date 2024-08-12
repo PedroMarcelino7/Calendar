@@ -9,7 +9,7 @@ export default function Activity() {
                 <h3>xx/xx/xxxx</h3>
             </div>
 
-            <div>
+            <div className={styles.options_box}>
                 <MoreVertIcon sx={{
                     fontSize: '2.5rem',
                 }} />
