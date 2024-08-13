@@ -29,22 +29,19 @@ app.get('/activities', (req, res) => {
 });
 
 app.post('/activity', (req, res) => {
-    const { userEmail, userPassword } = req.body;
-
-    if (!userEmail || !userPassword) {
-        return res.status(400).json({ error: 'userEmail and userPassword are required' });
-    }
+    const { title, date, dateEnd, description, priority, status } = req.body;
 
     const query = `
-        INSERT INTO USERS (USER_EMAIL, USER_PASSWORD)
-        VALUES (?, ?)
+        INSERT INTO
+        ACTIVITY (ACTIVITY_TITLE, ACTIVITY_DATE, ACTIVITY_DATE_END, ACTIVITY_DESCRIPTION, ACTIVITY_PRIORITY, ACTIVITY_STATUS)
+        VALUES (?, ?, ?, ?, ?, ?)
     `;
 
-    const values = [userEmail, userPassword];
+    const values = [title, date, dateEnd, description, priority, status];
 
     connection.query(query, values, (err, results) => {
         if (err) {
-            console.error("Error inserting user:", err);
+            console.error("Error creating activity:", err);
             return res.status(500).send(err);
         }
 

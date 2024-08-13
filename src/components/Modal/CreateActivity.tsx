@@ -8,12 +8,20 @@ interface Data {
     date: string,
     dateEnd: string | null,
     description: string,
-    priority: number,
-    status: number
+    priority: string,
+    status: string
 }
 
 export default function CreateActivity() {
     const handleSubmit = async (data: Data) => {
+
+        console.log(data.title, typeof (data.title))
+        console.log(data.date, typeof (data.date))
+        console.log(data.dateEnd, typeof (data.dateEnd))
+        console.log(data.description, typeof (data.description))
+        console.log(data.priority, typeof (data.priority))
+        console.log(data.status, typeof (data.status))
+
         try {
             const response = await fetch('http://localhost:3001/activity', {
                 method: 'POST',
@@ -25,8 +33,8 @@ export default function CreateActivity() {
                     date: data.date,
                     dateEnd: data.dateEnd,
                     description: data.description,
-                    priority: data.priority,
-                    status: data.status
+                    priority: parseInt(data.priority),
+                    status: parseInt(data.status)
                 }),
             })
 
