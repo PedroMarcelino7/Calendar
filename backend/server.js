@@ -28,29 +28,29 @@ app.get('/activities', (req, res) => {
     });
 });
 
-// app.post('/users', (req, res) => {
-//     const { userEmail, userPassword } = req.body;
+app.post('/activity', (req, res) => {
+    const { userEmail, userPassword } = req.body;
 
-//     if (!userEmail || !userPassword) {
-//         return res.status(400).json({ error: 'userEmail and userPassword are required' });
-//     }
+    if (!userEmail || !userPassword) {
+        return res.status(400).json({ error: 'userEmail and userPassword are required' });
+    }
 
-//     const query = `
-//         INSERT INTO USERS (USER_EMAIL, USER_PASSWORD)
-//         VALUES (?, ?)
-//     `;
+    const query = `
+        INSERT INTO USERS (USER_EMAIL, USER_PASSWORD)
+        VALUES (?, ?)
+    `;
 
-//     const values = [userEmail, userPassword];
+    const values = [userEmail, userPassword];
 
-//     connection.query(query, values, (err, results) => {
-//         if (err) {
-//             console.error("Error inserting user:", err);
-//             return res.status(500).send(err);
-//         }
+    connection.query(query, values, (err, results) => {
+        if (err) {
+            console.error("Error inserting user:", err);
+            return res.status(500).send(err);
+        }
 
-//         res.status(201).json(results);
-//     });
-// });
+        res.status(201).json(results);
+    });
+});
 
 // app.get('/movies', (req, res) => {
 //     const query = `

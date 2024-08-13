@@ -4,7 +4,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-export default function Status() {
+interface Props {
+    name: string
+}
+
+export default function Status({ name }: Props) {
     const [status, setStatus] = React.useState('');
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -18,6 +22,7 @@ export default function Status() {
                 value={status}
                 label="Status"
                 onChange={handleChange}
+                name={name}
             >
                 <MenuItem value="" disabled></MenuItem>
                 <MenuItem value={1}>Pending</MenuItem>

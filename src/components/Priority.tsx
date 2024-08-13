@@ -42,10 +42,14 @@ function IconContainer(props: IconContainerProps) {
     return <span {...other}>{customIcons[value].icon}</span>;
 }
 
-export default function Priority() {
+interface Props {
+    name: string
+}
+
+export default function Priority({ name }: Props) {
     return (
         <StyledRating
-            name=""
+            name={name}
             defaultValue={1}
             IconContainerComponent={IconContainer}
             getLabelText={(value: number) => customIcons[value].label}
