@@ -5,13 +5,21 @@ import TuneIcon from '@mui/icons-material/Tune';
 import Activity from './components/ActivityCard/Activity';
 import Calendar from './components/Calendar'
 import CreateActivity from './components/Modal/CreateActivity';
+import { useState } from 'react';
 
 function App() {
+  const [openModal, setOpenModal] = useState<Boolean>(false)
+
+  const handleDateClick = (arg: any) => {
+    setOpenModal(true)
+    console.log(arg.dateStr)
+  }
+
   return (
     <>
       <div className='viewport'>
         <div className='calendar_container'>
-          <Calendar />
+          <Calendar handleDateClick={handleDateClick} />
         </div>
 
         <div className="activities_container">
@@ -31,7 +39,7 @@ function App() {
         </div>
       </div>
 
-      <CreateActivity />
+      {openModal && <CreateActivity />}
     </>
   )
 }

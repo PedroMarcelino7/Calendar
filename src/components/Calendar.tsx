@@ -2,10 +2,11 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
 
-export default function Calendar() {
-    const handleDateClick = (arg: any) => {
-        console.log(arg.dateStr)
-    }
+interface Props{
+    handleDateClick: (arg: any) => void
+}
+
+export default function Calendar({ handleDateClick }: Props) {
 
     return (
         <FullCalendar
