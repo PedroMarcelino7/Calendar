@@ -5,15 +5,57 @@ import TuneIcon from '@mui/icons-material/Tune';
 import Activity from './components/ActivityCard/Activity';
 import Calendar from './components/Calendar'
 import CreateActivity from './components/Modal/CreateActivity';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+interface Activity {
+  ACTIVITY_CREATE_AT: string,
+  ACTIVITY_DATE: string,
+  ACTIVITY_DATE_END: string,
+  ACTIVITY_DESCRIPTION: string,
+  ACTIVITY_ID: number,
+  ACTIVITY_PRIORITY: string,
+  ACTIVITY_STATUS: string,
+  ACTIVITY_TITLE: string,
+}
 
 function App() {
   const [openModal, setOpenModal] = useState<Boolean>(false)
+  const [activities, setActivities] = useState<Activity[]>([])
 
   const handleDateClick = (arg: any) => {
     setOpenModal(true)
     console.log(arg.dateStr)
   }
+
+  const handleCloseModal = () => {
+    setOpenModal(false)
+  }
+
+  const getActivies = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/activities', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      setActivities(result)
+
+      console.log('Activities:', result);
+    } catch (err: any) {
+      console.log('Error', err)
+    }
+  }
+
+  useEffect(() => {
+    getActivies()
+  }, [])
 
   return (
     <>
@@ -31,15 +73,17 @@ function App() {
             </div>
 
             <div className="activities">
-              <Activity />
-              <Activity />
-              <Activity />
+              {
+                activities.map((activity, index) => (
+                  <Activity key={index} activity={activity} />
+                ))
+              }
             </div>
           </div>
         </div>
       </div>
 
-      {openModal && <CreateActivity />}
+      {openModal && <CreateActivity handleCloseModal={handleCloseModal} />}
     </>
   )
 }

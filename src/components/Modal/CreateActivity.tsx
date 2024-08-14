@@ -12,16 +12,12 @@ interface Data {
     status: string
 }
 
-export default function CreateActivity() {
+interface Props {
+    handleCloseModal: () => void
+}
+
+export default function CreateActivity({ handleCloseModal }: Props) {
     const handleSubmit = async (data: Data) => {
-
-        console.log(data.title, typeof (data.title))
-        console.log(data.date, typeof (data.date))
-        console.log(data.dateEnd, typeof (data.dateEnd))
-        console.log(data.description, typeof (data.description))
-        console.log(data.priority, typeof (data.priority))
-        console.log(data.status, typeof (data.status))
-
         try {
             const response = await fetch('http://localhost:3001/activity', {
                 method: 'POST',
@@ -53,7 +49,10 @@ export default function CreateActivity() {
     return (
         <div className={styles.modal_container}>
             <div className={styles.modal_box}>
-                <div className={styles.close_container}>
+                <div
+                    className={styles.close_container}
+                    onClick={handleCloseModal}
+                >
                     <CloseRoundedIcon sx={{ fontSize: '2.5rem' }} />
                 </div>
 
