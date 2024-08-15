@@ -32,12 +32,17 @@ export default function Activity({ activity }: Props) {
             className={styles.activity_card}
             style={{
                 border: `2px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`,
-                borderBottom: `5px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`
+                borderBottom: `7px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`
             }}
         >
             <div>
                 <h1>{activity.ACTIVITY_TITLE}</h1>
-                <h3>{activity.ACTIVITY_DATE}</h3>
+                <h3>
+                    {(() => {
+                        const [year, month, day] = activity.ACTIVITY_DATE.split('-');
+                        return `${day}/${month}/${year}`;
+                    })()}
+                </h3>
             </div>
 
             <div className={styles.options_box}>
