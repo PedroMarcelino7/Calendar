@@ -6,7 +6,12 @@
     padding-block: 1rem;
     padding-inline: 2rem;
     border: 2px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 5px solid rgba(0, 0, 0, 0.3);
     border-radius: 15px;
+
+    &:hover{
+        transform: scale(1.1);
+    }
 
     .options_box {
         display: flex;
