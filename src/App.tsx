@@ -14,7 +14,7 @@ interface Activity {
   ACTIVITY_DESCRIPTION: string,
   ACTIVITY_ID: number,
   ACTIVITY_PRIORITY: string,
-  ACTIVITY_STATUS: string,
+  ACTIVITY_STATUS: number,
   ACTIVITY_TITLE: string,
 }
 

@@ -12,13 +12,29 @@ interface Activity {
     ACTIVITY_DESCRIPTION: string,
     ACTIVITY_ID: number,
     ACTIVITY_PRIORITY: string,
-    ACTIVITY_STATUS: string,
+    ACTIVITY_STATUS: number,
     ACTIVITY_TITLE: string,
 }
 
 export default function Activity({ activity }: Props) {
+    const getBorderColor = (status: number) => {
+        if (status === 1) {
+            return 'rgba(254, 151, 5, 1)'
+        } else if (status === 2) {
+            return 'rgba(5, 105, 255, 1)'
+        } else {
+            return 'rgba(58, 196, 48, 1)'
+        }
+    }
+
     return (
-        <div className={styles.activity_card}>
+        <div
+            className={styles.activity_card}
+            style={{
+                border: `2px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`,
+                borderBottom: `5px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`
+            }}
+        >
             <div>
                 <h1>{activity.ACTIVITY_TITLE}</h1>
                 <h3>{activity.ACTIVITY_DATE}</h3>
