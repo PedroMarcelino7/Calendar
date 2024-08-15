@@ -14,7 +14,7 @@ interface Activity {
     ACTIVITY_PRIORITY: string,
     ACTIVITY_STATUS: string,
     ACTIVITY_TITLE: string,
-  }
+}
 
 export default function Activity({ activity }: Props) {
     return (

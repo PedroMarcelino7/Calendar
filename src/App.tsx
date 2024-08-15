@@ -21,10 +21,11 @@ interface Activity {
 function App() {
   const [openModal, setOpenModal] = useState<Boolean>(false)
   const [activities, setActivities] = useState<Activity[]>([])
+  const [selectedDate, setSelectedDate] = useState<string>('')
 
   const handleDateClick = (arg: any) => {
+    setSelectedDate(arg.dateStr)
     setOpenModal(true)
-    console.log(arg.dateStr)
   }
 
   const handleCloseModal = () => {
@@ -83,7 +84,7 @@ function App() {
         </div>
       </div>
 
-      {openModal && <CreateActivity handleCloseModal={handleCloseModal} />}
+      {openModal && <CreateActivity handleCloseModal={handleCloseModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
     </>
   )
 }

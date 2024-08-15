@@ -13,10 +13,12 @@ interface Data {
 }
 
 interface Props {
-    handleCloseModal: () => void
+    handleCloseModal: () => void,
+    selectedDate: string,
+    setSelectedDate: any
 }
 
-export default function CreateActivity({ handleCloseModal }: Props) {
+export default function CreateActivity({ handleCloseModal, selectedDate, setSelectedDate }: Props) {
     const handleSubmit = async (data: Data) => {
         try {
             const response = await fetch('http://localhost:3001/activity', {
@@ -78,7 +80,7 @@ export default function CreateActivity({ handleCloseModal }: Props) {
                     className={styles.form_container}
                 >
                     <div className={styles.date_container}>
-                        <input type="date" name='date' />
+                        <input type="date" name='date' value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}/>
                         <input type="date" name='dateEnd' />
                     </div>
 
