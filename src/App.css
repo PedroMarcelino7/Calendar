@@ -9,12 +9,9 @@
 
     .activities_container {
         width: 50%;
-        /* height: 90vh; */
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* overflow-y: auto;
-        overflow-x: hidden; */
 
         .activity_box {
             width: 75%;
@@ -24,9 +21,31 @@
             gap: 1rem;
 
             .utilities {
+                width: 100%;
                 display: flex;
                 justify-content: end;
-                width: 100%;
+                gap: 2rem;
+
+                .filters {
+                    gap: 1.5rem;
+                    display: flex;
+
+                    transition: all 1s;
+                    cursor: pointer;
+
+                    .filter_box {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        gap: 5px;
+
+                        transition: all 0.3s;
+
+                        &:hover {
+                            transform: scale(1.075);
+                        }
+                    }
+                }
 
                 .utility_box {
                     display: flex;
