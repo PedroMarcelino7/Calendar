@@ -28,6 +28,22 @@ app.get('/activities', (req, res) => {
     });
 });
 
+app.get('/activities/filter/priority', (req, res) => {
+    const query = `
+        SELECT * FROM ACTIVITY
+        ORDER BY ACTIVITY_PRIORITY
+    `;
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error("Error fetching activities:", err);
+            return res.status(500).send(err);
+        }
+
+        res.json(results);
+    });
+});
+
 app.post('/activity', (req, res) => {
     const { title, date, dateEnd, description, priority, status } = req.body;
 
@@ -48,85 +64,6 @@ app.post('/activity', (req, res) => {
         res.status(201).json(results);
     });
 });
-
-// app.get('/movies', (req, res) => {
-//     const query = `
-//         SELECT * FROM REVIEWS
-//     `;
-
-//     connection.query(query, (err, results) => {
-//         if (err) {
-//             console.error("Error fetching movies:", err);
-//             return res.status(500).send(err);
-//         }
-
-//         res.json(results);
-//     });
-// });
-
-// app.post('/movies/reviews', (req, res) => {
-//     const { movieTitle, movieReview, movieRating, movieReleaseDate, movieImg } = req.body;
-
-//     const query = `
-//         INSERT INTO 
-//         REVIEWS (REVIEW_MOVIE_TITLE, REVIEW_MOVIE_DATE, REVIEW_MOVIE_IMG, REVIEW_MOVIE_RATING, REVIEW_MOVIE_REVIEW)
-//         VALUES (?, ?, ?, ?, ?)
-//     `;
-
-//     const values = [movieTitle, movieReleaseDate, movieImg, movieRating, movieReview];
-
-//     connection.query(query, values, (err, results) => {
-//         if (err) {
-//             return res.status(500).send(err);
-//         }
-
-//         res.status(201).json(results);
-//     });
-// });
-
-// app.post('/movies/reviews/edit', (req, res) => {
-//     const { id, movieTitle, movieReview, movieRating, movieReleaseDate, movieImg } = req.body;
-
-//     const query = `
-//         UPDATE REVIEWS
-//         SET REVIEW_MOVIE_TITLE = ?,
-//             REVIEW_MOVIE_DATE = ?,
-//             REVIEW_MOVIE_IMG = ?,
-//             REVIEW_MOVIE_RATING = ?,
-//             REVIEW_MOVIE_REVIEW = ?
-//         WHERE REVIEW_ID = ?;
-//     `;
-
-//     const values = [movieTitle, movieReleaseDate, movieImg, movieRating, movieReview, id];
-
-//     connection.query(query, values, (err, results) => {
-//         if (err) {
-//             return res.status(500).send(err);
-//         }
-
-//         res.status(201).json(results);
-//     });
-// });
-
-// app.post('/movies/reviews/archive', (req, res) => {
-//     const { id } = req.body;
-
-//     const query = `
-//         UPDATE REVIEWS
-//         SET REVIEW_STATUS = 0
-//         WHERE REVIEW_ID = ?;
-//     `;
-
-//     const values = [id];
-
-//     connection.query(query, values, (err, results) => {
-//         if (err) {
-//             return res.status(500).send(err);
-//         }
-
-//         res.status(201).json(results);
-//     });
-// });
 
 const PORT = process.env.PORT || 3001;
 
