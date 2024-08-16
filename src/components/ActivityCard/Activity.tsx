@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styles from './Activity.module.css'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 
@@ -16,7 +17,7 @@ interface Activity {
     ACTIVITY_TITLE: string,
 }
 
-export default function Activity({ activity, }: Props) {
+export default function Activity({ activity }: Props) {
     const getBorderColor = (status: number) => {
         if (status === 1) {
             return 'rgba(254, 151, 5, 1)'
@@ -27,8 +28,15 @@ export default function Activity({ activity, }: Props) {
         }
     }
 
+    const [openCardId, setOpenCardId] = useState<number | null>(null);
+
+    const handleCardClick = (id: number) => {
+        setOpenCardId(openCardId === id ? null : id);
+    }
+
     return (
         <div
+            onClick={() => handleCardClick(activity.ACTIVITY_ID)}
             className={styles.activity_card_container}
             style={{
                 border: `2px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`,
@@ -53,7 +61,12 @@ export default function Activity({ activity, }: Props) {
                 </div>
             </div>
 
-            <div className={styles.activity_content}>
+            <div
+                className={styles.activity_content}
+                style={{
+                    display: openCardId === activity.ACTIVITY_ID ? 'block' : 'none'
+                }}
+            >
                 <div className={styles.description}>
                     <p>{activity.ACTIVITY_DESCRIPTION}</p>
                 </div>
