@@ -60,6 +60,22 @@ app.get('/activities/filter/status', (req, res) => {
     });
 });
 
+app.get('/activities/filter/date', (req, res) => {
+    const query = `
+        SELECT * FROM ACTIVITY
+        ORDER BY ACTIVITY_DATE
+    `;
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error("Error fetching activities:", err);
+            return res.status(500).send(err);
+        }
+
+        res.json(results);
+    });
+});
+
 app.post('/activity', (req, res) => {
     const { title, date, dateEnd, description, priority, status } = req.body;
 
