@@ -36,75 +36,9 @@ function App() {
     setOpenModal(false)
   }
 
-  const getActivies = async () => {
+  const getActivies = async (filter: string) => {
     try {
-      const response = await fetch('http://localhost:3001/activities', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-
-      const result = await response.json();
-      setActivities(result)
-
-      console.log('Activities:', result);
-    } catch (err: any) {
-      console.log('Error', err)
-    }
-  }
-
-  const getActiviesByPriority = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/activities/filter/priority', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-
-      const result = await response.json();
-      setActivities(result)
-
-      console.log('Activities:', result);
-    } catch (err: any) {
-      console.log('Error', err)
-    }
-  }
-
-  const getActiviesByStatus = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/activities/filter/status', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
-      }
-
-      const result = await response.json();
-      setActivities(result)
-
-      console.log('Activities:', result);
-    } catch (err: any) {
-      console.log('Error', err)
-    }
-  }
-
-  const getActiviesByDate = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/activities/filter/date', {
+      const response = await fetch(`http://localhost:3001/activities/filter/${filter}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -125,7 +59,7 @@ function App() {
   }
 
   useEffect(() => {
-    getActivies()
+    getActivies('priority')
   }, [])
 
   return (
@@ -142,17 +76,17 @@ function App() {
                 className="filters"
                 style={{ marginTop: showFilters ? '-500px' : '0px' }}
               >
-                <div className="filter_box" onClick={getActiviesByDate}>
+                <div className="filter_box" onClick={() => getActivies('date')}>
                   <CalendarMonthRoundedIcon />
                   <h3>Date</h3>
                 </div>
 
-                <div className="filter_box" onClick={getActiviesByPriority}>
+                <div className="filter_box" onClick={() => getActivies('priority')}>
                   <FlagRoundedIcon />
                   <h3>Priority</h3>
                 </div>
 
-                <div className="filter_box" onClick={getActiviesByStatus}>
+                <div className="filter_box" onClick={() => getActivies('status')}>
                   <ChecklistRoundedIcon />
                   <h3>Status</h3>
                 </div>
