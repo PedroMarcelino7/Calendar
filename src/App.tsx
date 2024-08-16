@@ -13,7 +13,7 @@ interface Activity {
   ACTIVITY_DATE_END: string,
   ACTIVITY_DESCRIPTION: string,
   ACTIVITY_ID: number,
-  ACTIVITY_PRIORITY: string,
+  ACTIVITY_PRIORITY: number,
   ACTIVITY_STATUS: number,
   ACTIVITY_TITLE: string,
 }

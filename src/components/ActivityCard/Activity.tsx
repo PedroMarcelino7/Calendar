@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './Activity.module.css'
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 
 interface Props {
     activity: Activity
@@ -12,7 +13,7 @@ interface Activity {
     ACTIVITY_DATE_END: string,
     ACTIVITY_DESCRIPTION: string,
     ACTIVITY_ID: number,
-    ACTIVITY_PRIORITY: string,
+    ACTIVITY_PRIORITY: number,
     ACTIVITY_STATUS: number,
     ACTIVITY_TITLE: string,
 }
@@ -28,6 +29,20 @@ export default function Activity({ activity }: Props) {
         }
     }
 
+    const getPiorityColor = (priority: number) => {
+        if (priority === 1) {
+            return '#2E7D32'
+        } else if (priority === 2) {
+            return '#0288D1'
+        } else if (priority === 3) {
+            return '#FAAF00'
+        } else if (priority === 4) {
+            return '#ED6C02'
+        } else if (priority === 5) {
+            return '#D14040'
+        }
+    }
+
     const [openCardId, setOpenCardId] = useState<number | null>(null);
 
     const handleCardClick = (id: number) => {
@@ -40,10 +55,12 @@ export default function Activity({ activity }: Props) {
             className={styles.activity_card_container}
             style={{
                 border: `2px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`,
-                borderBottom: `7px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`
+                borderBottom: `10px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`
             }}
         >
-            <div className={styles.activity_card}>
+            <div
+                className={styles.activity_card}
+            >
                 <div>
                     <h1>{activity.ACTIVITY_TITLE}</h1>
                     <h3>
@@ -70,6 +87,10 @@ export default function Activity({ activity }: Props) {
                 <div className={styles.description}>
                     <p>{activity.ACTIVITY_DESCRIPTION}</p>
                 </div>
+            </div>
+
+            <div className={styles.priority}>
+                <FlagRoundedIcon sx={{ color: getPiorityColor(activity.ACTIVITY_PRIORITY) }} />
             </div>
         </div>
     )
