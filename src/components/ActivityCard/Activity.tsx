@@ -23,7 +23,7 @@ export default function Activity({ activity }: Props) {
         } else if (status === 2) {
             return 'rgba(5, 105, 255, 1)'
         } else {
-            return 'rgba(58, 196, 48, 1)'
+            return 'rgba(35, 130, 35, 1)'
         }
     }
 

@@ -1,3 +1,4 @@
+import SubmitButton from '../Buttons/SubmitButton'
 import Priority from '../Priority'
 import Status from '../Status'
 import styles from './CreateActivity.module.css'
@@ -58,7 +59,7 @@ export default function CreateActivity({ handleCloseModal, selectedDate, setSele
                     <CloseRoundedIcon sx={{ fontSize: '2.5rem' }} />
                 </div>
 
-                <h1>CreateActivity</h1>
+                <h1>Create activity</h1>
 
                 <form
                     onSubmit={(event) => {
@@ -80,21 +81,19 @@ export default function CreateActivity({ handleCloseModal, selectedDate, setSele
                     className={styles.form_container}
                 >
                     <div className={styles.date_container}>
-                        <input type="date" name='date' value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)}/>
-                        <input type="date" name='dateEnd' />
+                        <input className={styles.input} type="date" name='date' value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
+                        <input className={styles.input} type="date" name='dateEnd' />
                     </div>
 
-                    <input type="text" placeholder='Title' name='title' />
-                    <textarea placeholder='Descrição' rows={5} name='description' />
+                    <input className={styles.input} type="text" placeholder='Title' name='title' />
+                    <textarea className={styles.input} placeholder='Descrição' rows={5} name='description' />
 
                     <div className={styles.date_container}>
                         <Priority name={'priority'} />
                         <Status name={'status'} />
                     </div>
 
-                    <button type="submit">
-                        Submit
-                    </button>
+                    <SubmitButton text='Create activity' />
                 </form>
             </div>
         </div>
