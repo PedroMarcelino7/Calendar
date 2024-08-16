@@ -1,22 +1,37 @@
-.activity_card {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.activity_card_container {
     width: 100%;
+    display: flex;
+    flex-direction: column;
     padding-block: 1rem;
     padding-inline: 2rem;
     border-radius: 15px;
 
     cursor: pointer;
 
-    &:hover{
+    &:hover {
         transform: scale(1.025);
     }
 
-    .options_box {
+    .activity_card {
+        width: 100%;
         display: flex;
+        justify-content: space-between;
         align-items: center;
-        justify-content: center;
-        border-radius: 5px;
+
+        .options_box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+        }
+    }
+
+    .activity_content {
+        margin-top: 1.5rem;
+
+        .description {
+            padding-left: 0.75rem;
+            border-left: 3px solid rgba(0, 0, 0, 0.55);
+        }
     }
 }

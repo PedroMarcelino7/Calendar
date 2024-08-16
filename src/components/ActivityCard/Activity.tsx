@@ -16,7 +16,7 @@ interface Activity {
     ACTIVITY_TITLE: string,
 }
 
-export default function Activity({ activity }: Props) {
+export default function Activity({ activity, }: Props) {
     const getBorderColor = (status: number) => {
         if (status === 1) {
             return 'rgba(254, 151, 5, 1)'
@@ -29,26 +29,34 @@ export default function Activity({ activity }: Props) {
 
     return (
         <div
-            className={styles.activity_card}
+            className={styles.activity_card_container}
             style={{
                 border: `2px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`,
                 borderBottom: `7px solid ${getBorderColor(activity.ACTIVITY_STATUS)}`
             }}
         >
-            <div>
-                <h1>{activity.ACTIVITY_TITLE}</h1>
-                <h3>
-                    {(() => {
-                        const [year, month, day] = activity.ACTIVITY_DATE.split('-');
-                        return `${day}/${month}/${year}`;
-                    })()}
-                </h3>
+            <div className={styles.activity_card}>
+                <div>
+                    <h1>{activity.ACTIVITY_TITLE}</h1>
+                    <h3>
+                        {(() => {
+                            const [year, month, day] = activity.ACTIVITY_DATE.split('-');
+                            return `${day}/${month}/${year}`;
+                        })()}
+                    </h3>
+                </div>
+
+                <div className={styles.options_box}>
+                    <MoreVertIcon sx={{
+                        fontSize: '2.5rem',
+                    }} />
+                </div>
             </div>
 
-            <div className={styles.options_box}>
-                <MoreVertIcon sx={{
-                    fontSize: '2.5rem',
-                }} />
+            <div className={styles.activity_content}>
+                <div className={styles.description}>
+                    <p>{activity.ACTIVITY_DESCRIPTION}</p>
+                </div>
             </div>
         </div>
     )
