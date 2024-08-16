@@ -44,6 +44,22 @@ app.get('/activities/filter/priority', (req, res) => {
     });
 });
 
+app.get('/activities/filter/status', (req, res) => {
+    const query = `
+        SELECT * FROM ACTIVITY
+        ORDER BY ACTIVITY_STATUS
+    `;
+
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error("Error fetching activities:", err);
+            return res.status(500).send(err);
+        }
+
+        res.json(results);
+    });
+});
+
 app.post('/activity', (req, res) => {
     const { title, date, dateEnd, description, priority, status } = req.body;
 

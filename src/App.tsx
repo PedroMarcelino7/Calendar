@@ -76,6 +76,28 @@ function App() {
     }
   }
 
+  const getActiviesByStatus = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/activities/filter/status', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      setActivities(result)
+
+      console.log('Activities:', result);
+    } catch (err: any) {
+      console.log('Error', err)
+    }
+  }
+
   useEffect(() => {
     getActivies()
   }, [])
@@ -83,6 +105,8 @@ function App() {
   const handleFilter = (filter: number) => {
     if (filter === 1) {
       getActiviesByPriority()
+    } else if (filter === 2) {
+      getActiviesByStatus()
     }
   }
 
@@ -98,7 +122,7 @@ function App() {
             <div className="utilities">
               <div
                 className="utility_box"
-                onClick={() => handleFilter(1)}
+                onClick={() => handleFilter(2)}
               >
                 <TuneIcon sx={{ fontSize: '2rem' }} />
               </div>
