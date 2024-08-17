@@ -3,6 +3,8 @@ import './App.css'
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import Activity from './components/ActivityCard/Activity';
 import Calendar from './components/Calendar'
@@ -70,9 +72,12 @@ function App() {
         <div className="activities_container">
           <div className="activity_box">
             <div className="utilities">
-              <div
-                className="filters"
-              >
+              <div className='ordering'>
+                <KeyboardArrowUpIcon />
+                <KeyboardArrowDownIcon />
+              </div>
+
+              <div className="filters">
                 <div className="filter_box" onClick={() => getActivies('priority')}>
                   <FlagRoundedIcon />
                   <h3>Priority</h3>

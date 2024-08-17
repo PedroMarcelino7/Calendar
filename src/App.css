@@ -23,8 +23,26 @@
             .utilities {
                 width: 100%;
                 display: flex;
-                justify-content: end;
+                justify-content: space-between;
+                align-items: center;
                 gap: 2rem;
+
+                .ordering {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    svg {
+                        font-size: 2.5rem;
+
+                        transition: all 0.5s;
+                        cursor: pointer;
+
+                        &:hover {
+                            transform: scale(1.2);
+                        }
+                    }
+                }
 
                 .filters {
                     gap: 1.5rem;
