@@ -26,6 +26,7 @@ function App() {
   const [openModal, setOpenModal] = useState<Boolean>(false)
   const [activities, setActivities] = useState<Activity[]>([])
   const [selectedDate, setSelectedDate] = useState<string>('')
+  const [isReversed, setIsReversed] = useState<boolean>(false)
 
   const handleDateClick = (arg: any) => {
     setSelectedDate(arg.dateStr)
@@ -52,10 +53,22 @@ function App() {
       const result = await response.json();
       setActivities(result)
 
-      console.log('Activities:', result);
+      console.log('Get Activities:', result);
     } catch (err: any) {
       console.log('Error', err)
     }
+  }
+
+  const increasingOrder = () => {
+    const reversedActivities = [...activities].reverse();
+    isReversed ? setActivities(reversedActivities) : ''
+    setIsReversed(false)
+  }
+  
+  const decreasingOrder = () => {
+    const reversedActivities = [...activities].reverse();
+    isReversed ? '' : setActivities(reversedActivities)
+    setIsReversed(true)
   }
 
   useEffect(() => {
@@ -73,8 +86,8 @@ function App() {
           <div className="activity_box">
             <div className="utilities">
               <div className='ordering'>
-                <KeyboardArrowUpIcon />
-                <KeyboardArrowDownIcon />
+                <KeyboardArrowUpIcon onClick={increasingOrder} />
+                <KeyboardArrowDownIcon onClick={decreasingOrder} />
               </div>
 
               <div className="filters">
