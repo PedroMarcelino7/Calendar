@@ -1,6 +1,9 @@
-import { useState } from 'react';
 import styles from './Activity.module.css'
-import MoreVertIcon from '@mui/icons-material/MoreVert';
+
+import { useState } from 'react';
+
+import ArchiveIcon from '@mui/icons-material/Archive';
+import EditIcon from '@mui/icons-material/Edit';
 import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 
 interface Props {
@@ -72,9 +75,8 @@ export default function Activity({ activity }: Props) {
                 </div>
 
                 <div className={styles.options_box}>
-                    <MoreVertIcon sx={{
-                        fontSize: '2.5rem',
-                    }} />
+                    <ArchiveIcon/>
+                    <EditIcon/>
                 </div>
             </div>
 
