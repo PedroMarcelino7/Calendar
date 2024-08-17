@@ -73,11 +73,6 @@ export default function Activity({ activity }: Props) {
                         })()}
                     </h3>
                 </div>
-
-                <div className={styles.options_box}>
-                    <ArchiveIcon/>
-                    <EditIcon/>
-                </div>
             </div>
 
             <div
@@ -93,6 +88,11 @@ export default function Activity({ activity }: Props) {
 
             <div className={styles.priority}>
                 <FlagRoundedIcon sx={{ color: getPiorityColor(activity.ACTIVITY_PRIORITY) }} />
+            </div>
+
+            <div className={styles.options_box}>
+                <ArchiveIcon />
+                <EditIcon />
             </div>
         </div>
     )
