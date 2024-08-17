@@ -52,14 +52,19 @@ export default function CreateActivity({ handleCloseModal, selectedDate, setSele
     return (
         <div className={styles.modal_container}>
             <div className={styles.modal_box}>
-                <div
-                    className={styles.close_container}
-                    onClick={handleCloseModal}
-                >
-                    <CloseRoundedIcon sx={{ fontSize: '2.5rem' }} />
+                <div className={styles.header}>
+                    <h1 className={styles.title}>
+                        Create activity
+                    </h1>
+
+                    <div
+                        onClick={handleCloseModal}
+                    >
+                        <CloseRoundedIcon sx={{ fontSize: '2.5rem' }} />
+                    </div>
                 </div>
 
-                <h1>Create activity</h1>
+
 
                 <form
                     onSubmit={(event) => {
@@ -96,6 +101,6 @@ export default function CreateActivity({ handleCloseModal, selectedDate, setSele
                     <SubmitButton text='Create activity' />
                 </form>
             </div>
-        </div>
+        </div >
     )
 }

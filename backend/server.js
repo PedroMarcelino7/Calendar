@@ -13,21 +13,6 @@ app.use(cors({
 
 app.use(express.json());
 
-app.get('/activities', (req, res) => {
-    const query = `
-        SELECT * FROM ACTIVITY
-    `;
-
-    connection.query(query, (err, results) => {
-        if (err) {
-            console.error("Error fetching activities:", err);
-            return res.status(500).send(err);
-        }
-
-        res.json(results);
-    });
-});
-
 app.get('/activities/filter/priority', (req, res) => {
     const query = `
         SELECT * FROM ACTIVITY

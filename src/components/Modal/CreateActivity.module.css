@@ -23,13 +23,14 @@
         padding-inline: 2.5rem;
         z-index: 1000;
 
-        .close_container {
+        .header {
             width: 100%;
             display: flex;
-            justify-content: end;
+            justify-content: space-between;
             align-items: center;
+            margin-bottom: 2rem;
 
-            :first-child {
+            :last-child {
                 cursor: pointer;
             }
         }
@@ -55,9 +56,19 @@
                 font-weight: 600;
                 border-radius: 10px;
                 border: 2px solid rgba(0, 0, 0, 0.3);
-                color: rgba(0, 0, 0, 0.3);
 
                 cursor: text;
+
+                &::placeholder {
+                    color: rgba(0, 0, 0, 0.3);
+                }
+            }
+
+            textarea {
+                min-width: 100%;
+                max-width: 100%;
+                min-height: 100px;
+                max-height: 300px;
             }
         }
     }

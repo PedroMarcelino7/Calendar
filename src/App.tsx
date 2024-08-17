@@ -1,6 +1,5 @@
 import './App.css'
 
-import TuneIcon from '@mui/icons-material/Tune';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 import ChecklistRoundedIcon from '@mui/icons-material/ChecklistRounded';
@@ -25,7 +24,6 @@ function App() {
   const [openModal, setOpenModal] = useState<Boolean>(false)
   const [activities, setActivities] = useState<Activity[]>([])
   const [selectedDate, setSelectedDate] = useState<string>('')
-  const [showFilters, setShowFilters] = useState<boolean>(false)
 
   const handleDateClick = (arg: any) => {
     setSelectedDate(arg.dateStr)
@@ -74,28 +72,21 @@ function App() {
             <div className="utilities">
               <div
                 className="filters"
-                style={{ marginTop: showFilters ? '-500px' : '0px' }}
               >
-                <div className="filter_box" onClick={() => getActivies('date')}>
-                  <CalendarMonthRoundedIcon />
-                  <h3>Date</h3>
-                </div>
-
                 <div className="filter_box" onClick={() => getActivies('priority')}>
                   <FlagRoundedIcon />
                   <h3>Priority</h3>
+                </div>
+
+                <div className="filter_box" onClick={() => getActivies('date')}>
+                  <CalendarMonthRoundedIcon />
+                  <h3>Date</h3>
                 </div>
 
                 <div className="filter_box" onClick={() => getActivies('status')}>
                   <ChecklistRoundedIcon />
                   <h3>Status</h3>
                 </div>
-              </div>
-              <div
-                className="utility_box"
-                onClick={() => setShowFilters(!showFilters)}
-              >
-                <TuneIcon sx={{ fontSize: '2rem' }} />
               </div>
             </div>
 
