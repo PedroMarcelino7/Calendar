@@ -19,6 +19,7 @@ interface Activity {
     ACTIVITY_PRIORITY: number,
     ACTIVITY_STATUS: number,
     ACTIVITY_TITLE: string,
+    ACTIVITY_ACTIVE: boolean
 }
 
 export default function Activity({ activity }: Props) {
@@ -92,7 +93,7 @@ export default function Activity({ activity }: Props) {
 
             <div className={styles.options_box}>
                 <ArchiveIcon />
-                <EditIcon />
+                <EditIcon onClick={() => console.log('edit')} />
             </div>
         </div>
     )

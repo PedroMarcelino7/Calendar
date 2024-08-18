@@ -16,6 +16,7 @@ app.use(express.json());
 app.get('/activities/filter/priority', (req, res) => {
     const query = `
         SELECT * FROM ACTIVITY
+        WHERE ACTIVITY_ACTIVE = 1
         ORDER BY ACTIVITY_PRIORITY
     `;
 
@@ -32,6 +33,7 @@ app.get('/activities/filter/priority', (req, res) => {
 app.get('/activities/filter/status', (req, res) => {
     const query = `
         SELECT * FROM ACTIVITY
+        WHERE ACTIVITY_ACTIVE = 1
         ORDER BY ACTIVITY_STATUS
     `;
 
@@ -48,6 +50,7 @@ app.get('/activities/filter/status', (req, res) => {
 app.get('/activities/filter/date', (req, res) => {
     const query = `
         SELECT * FROM ACTIVITY
+        WHERE ACTIVITY_ACTIVE = 1
         ORDER BY ACTIVITY_DATE
     `;
 

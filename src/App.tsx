@@ -20,6 +20,7 @@ interface Activity {
   ACTIVITY_PRIORITY: number,
   ACTIVITY_STATUS: number,
   ACTIVITY_TITLE: string,
+  ACTIVITY_ACTIVE: boolean
 }
 
 function App() {
