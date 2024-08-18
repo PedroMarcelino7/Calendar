@@ -25,18 +25,29 @@ interface Activity {
 }
 
 function App() {
-  const [openModal, setOpenModal] = useState<Boolean>(false)
   const [activities, setActivities] = useState<Activity[]>([])
+  const [openCreateActivityModal, setOpenCreateActivityModal] = useState<Boolean>(false)
+  const [openEditActivityModal, setOpenEditActivityModal] = useState<Boolean>(false)
   const [selectedDate, setSelectedDate] = useState<string>('')
+  const [idToEdit, setIdToEdit] = useState<number | null>(null)
   const [isReversed, setIsReversed] = useState<boolean>(false)
 
   const handleDateClick = (arg: any) => {
     setSelectedDate(arg.dateStr)
-    setOpenModal(true)
+    setOpenCreateActivityModal(true)
   }
 
-  const handleCloseModal = () => {
-    setOpenModal(false)
+  const handleCloseCreateActivityModal = () => {
+    setOpenCreateActivityModal(false)
+  }
+
+  const handleOpenEditActivityModal = (id: number) => {
+    setIdToEdit(id)
+    setOpenEditActivityModal(true)
+  }
+
+  const handleCloseEditActivityModal = () => {
+    setOpenEditActivityModal(false)
   }
 
   const getActivies = async (filter: string) => {
@@ -66,7 +77,7 @@ function App() {
     isReversed ? setActivities(reversedActivities) : ''
     setIsReversed(false)
   }
-  
+
   const decreasingOrder = () => {
     const reversedActivities = [...activities].reverse();
     isReversed ? '' : setActivities(reversedActivities)
@@ -113,7 +124,7 @@ function App() {
             <div className="activities">
               {
                 activities.map((activity, index) => (
-                  <Activity key={index} activity={activity} />
+                  <Activity key={index} activity={activity} handleOpenEditActivityModal={handleOpenEditActivityModal} />
                 ))
               }
             </div>
@@ -121,8 +132,8 @@ function App() {
         </div>
       </div>
 
-      {/* {openModal && <CreateActivity handleCloseModal={handleCloseModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />} */}
-      {openModal && <EditActivity handleCloseModal={handleCloseModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
+      {openCreateActivityModal && <CreateActivity handleCloseModal={handleCloseCreateActivityModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
+      {openEditActivityModal && <EditActivity handleCloseModal={handleCloseEditActivityModal} idToEdit={idToEdit} />}
     </>
   )
 }

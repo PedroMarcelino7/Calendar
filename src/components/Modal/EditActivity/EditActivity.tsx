@@ -17,11 +17,10 @@ interface Data {
 
 interface Props {
     handleCloseModal: () => void,
-    selectedDate: string,
-    setSelectedDate: any
+    idToEdit: number | null
 }
 
-export default function EditActivity({ handleCloseModal, selectedDate, setSelectedDate }: Props) {
+export default function EditActivity({ handleCloseModal, idToEdit }: Props) {
     const handleSubmit = async (data: Data) => {
         try {
             const response = await fetch('http://localhost:3001/activity', {
@@ -88,7 +87,7 @@ export default function EditActivity({ handleCloseModal, selectedDate, setSelect
                     className={styles.form_container}
                 >
                     <div className={styles.date_container}>
-                        <input className={styles.input} type="date" name='date' value={selectedDate} onChange={(e) => setSelectedDate(e.target.value)} />
+                        <input className={styles.input} type="date" name='date' />
                         <input className={styles.input} type="date" name='dateEnd' />
                     </div>
 

@@ -7,7 +7,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 
 interface Props {
-    activity: Activity
+    activity: Activity,
+    handleOpenEditActivityModal: (id: number) => void
 }
 
 interface Activity {
@@ -22,7 +23,7 @@ interface Activity {
     ACTIVITY_ACTIVE: boolean
 }
 
-export default function Activity({ activity }: Props) {
+export default function Activity({ activity, handleOpenEditActivityModal }: Props) {
     const getBorderColor = (status: number) => {
         if (status === 1) {
             return 'rgba(254, 151, 5, 1)'
@@ -117,7 +118,7 @@ export default function Activity({ activity }: Props) {
 
             <div className={styles.options_box}>
                 <ArchiveIcon onClick={() => archiveActivity(activity.ACTIVITY_ID)} />
-                <EditIcon />
+                <EditIcon onClick={() => handleOpenEditActivityModal(activity.ACTIVITY_ID)} />
             </div>
         </div>
     )
