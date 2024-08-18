@@ -11,6 +11,7 @@ import Calendar from './components/Calendar'
 import CreateActivity from './components/Modal/CreateActivity';
 import { useEffect, useState } from 'react';
 import EditActivity from './components/Modal/EditActivity/EditActivity';
+import Loading from './components/Loading/Loading';
 
 interface Activity {
   ACTIVITY_CREATE_AT: string,
@@ -25,6 +26,7 @@ interface Activity {
 }
 
 function App() {
+  const [loading, setLoading] = useState<boolean>(true)
   const [activities, setActivities] = useState<Activity[]>([])
   const [openCreateActivityModal, setOpenCreateActivityModal] = useState<Boolean>(false)
   const [openEditActivityModal, setOpenEditActivityModal] = useState<Boolean>(false)
@@ -68,6 +70,7 @@ function App() {
       }
 
       const result = await response.json();
+      setLoading(false)
       setActivities(result)
 
       console.log('Get Activities:', result);
@@ -135,6 +138,8 @@ function App() {
           </div>
         </div>
       </div>
+
+      {loading && <Loading />}
 
       {openCreateActivityModal && <CreateActivity handleCloseModal={handleCloseCreateActivityModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
       {openEditActivityModal && <EditActivity handleCloseModal={handleCloseEditActivityModal} activity={getActivityById(idToEdit)} />}

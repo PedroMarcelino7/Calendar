@@ -29,6 +29,7 @@ export default function Calendar({ activities, handleDateClick }: Props) {
                 title: activity.ACTIVITY_TITLE,
                 date: activity.ACTIVITY_DATE
             }))}
+            eventClick={() => alert('teste')}
             dateClick={handleDateClick}
         />
     )
