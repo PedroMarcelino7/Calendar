@@ -10,6 +10,7 @@ import Activity from './components/ActivityCard/Activity';
 import Calendar from './components/Calendar'
 import CreateActivity from './components/Modal/CreateActivity';
 import { useEffect, useState } from 'react';
+import EditActivity from './components/Modal/EditActivity/EditActivity';
 
 interface Activity {
   ACTIVITY_CREATE_AT: string,
@@ -120,7 +121,8 @@ function App() {
         </div>
       </div>
 
-      {openModal && <CreateActivity handleCloseModal={handleCloseModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
+      {/* {openModal && <CreateActivity handleCloseModal={handleCloseModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />} */}
+      {openModal && <EditActivity handleCloseModal={handleCloseModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
     </>
   )
 }
