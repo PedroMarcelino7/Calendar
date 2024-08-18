@@ -64,6 +64,27 @@ app.get('/activities/filter/date', (req, res) => {
     });
 });
 
+app.post('/activity/archive', (req, res) => {
+    const { id } = req.body;
+
+    const query = `
+        UPDATE ACTIVITY
+        SET ACTIVITY_ACTIVE = 0
+        WHERE ACTIVITY_ID = ?
+    `;
+
+    const values = [id];
+
+    connection.query(query, values, (err, results) => {
+        if (err) {
+            console.error("Error creating activity:", err);
+            return res.status(500).send(err);
+        }
+
+        res.status(201).json(results);
+    });
+});
+
 app.post('/activity', (req, res) => {
     const { title, date, dateEnd, description, priority, status } = req.body;
 

@@ -53,6 +53,30 @@ export default function Activity({ activity }: Props) {
         setOpenCardId(openCardId === id ? null : id);
     }
 
+    const archiveActivity = async (id: number) => {
+        try {
+            const response = await fetch('http://localhost:3001/activity/archive', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id
+                }),
+            })
+
+            if (!response.ok) {
+                throw new Error(`Error: ${response.statusText}`);
+            }
+
+            const result = await response.json();
+
+            console.log('Archived:', result);
+        } catch (err: any) {
+            console.log('Error:', err)
+        }
+    }
+
     return (
         <div
             onClick={() => handleCardClick(activity.ACTIVITY_ID)}
@@ -92,8 +116,8 @@ export default function Activity({ activity }: Props) {
             </div>
 
             <div className={styles.options_box}>
-                <ArchiveIcon />
-                <EditIcon onClick={() => console.log('edit')} />
+                <ArchiveIcon onClick={() => archiveActivity(activity.ACTIVITY_ID)} />
+                <EditIcon />
             </div>
         </div>
     )
