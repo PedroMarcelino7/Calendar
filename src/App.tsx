@@ -29,7 +29,7 @@ function App() {
   const [openCreateActivityModal, setOpenCreateActivityModal] = useState<Boolean>(false)
   const [openEditActivityModal, setOpenEditActivityModal] = useState<Boolean>(false)
   const [selectedDate, setSelectedDate] = useState<string>('')
-  const [idToEdit, setIdToEdit] = useState<number | null>(null)
+  const [idToEdit, setIdToEdit] = useState<number>(0)
   const [isReversed, setIsReversed] = useState<boolean>(false)
 
   const handleDateClick = (arg: any) => {
@@ -42,13 +42,18 @@ function App() {
   }
 
   const handleOpenEditActivityModal = (id: number) => {
-    setIdToEdit(id)
-    setOpenEditActivityModal(true)
-  }
+    console.log('id recebido:', id);
+    setIdToEdit(id);
+    setOpenEditActivityModal(true);
+  };
 
   const handleCloseEditActivityModal = () => {
-    setOpenEditActivityModal(false)
-  }
+    setOpenEditActivityModal(false);
+  };
+
+  const getActivityById = (id: number) => {
+    return activities.find(activity => activity.ACTIVITY_ID === id);
+  };
 
   const getActivies = async (filter: string) => {
     try {
@@ -133,7 +138,7 @@ function App() {
       </div>
 
       {openCreateActivityModal && <CreateActivity handleCloseModal={handleCloseCreateActivityModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
-      {openEditActivityModal && <EditActivity handleCloseModal={handleCloseEditActivityModal} idToEdit={idToEdit} />}
+      {openEditActivityModal && <EditActivity handleCloseModal={handleCloseEditActivityModal} activity={getActivityById(idToEdit)} />}
     </>
   )
 }

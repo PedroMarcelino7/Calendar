@@ -106,6 +106,33 @@ app.post('/activity', (req, res) => {
     });
 });
 
+app.post('/activity/edit', (req, res) => {
+    const { id, title, date, dateEnd, description, priority, status } = req.body;
+
+    const query = `
+        UPDATE ACTIVITY
+        SET
+            ACTIVITY_TITLE = ?,
+            ACTIVITY_DATE = ?,
+            ACTIVITY_DATE_END = ?,
+            ACTIVITY_DESCRIPTION = ?,
+            ACTIVITY_PRIORITY = ?,
+            ACTIVITY_STATUS = ?
+        WHERE ACTIVITY_ID = ?
+    `;
+
+    const values = [title, date, dateEnd, description, priority, status, id];
+
+    connection.query(query, values, (err, results) => {
+        if (err) {
+            console.error("Error creating activity:", err);
+            return res.status(500).send(err);
+        }
+
+        res.status(201).json(results);
+    });
+});
+
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
