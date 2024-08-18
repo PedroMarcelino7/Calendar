@@ -5,7 +5,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import SubmitButton from '../../Buttons/SubmitButton'
 import Priority from '../../Priority'
 import Status from '../../Status'
-import { useEffect } from 'react'
+import { useState } from 'react'
 
 interface Data {
     title: string,
@@ -34,7 +34,14 @@ interface Props {
 }
 
 export default function EditActivity({ handleCloseModal, activity }: Props) {
-    const handleSubmit = async (data: Data) => {        
+    const [title, setTitle] = useState<string>(activity?.ACTIVITY_TITLE || '')
+    const [date, setDate] = useState<string>(activity?.ACTIVITY_DATE || '')
+    const [dateEnd, setDateEnd] = useState<string>(activity?.ACTIVITY_DATE_END || '')
+    const [description, setDescription] = useState<string>(activity?.ACTIVITY_DESCRIPTION || '')
+    const [priority, setPriority] = useState<number>(activity?.ACTIVITY_PRIORITY || 0)
+    // const [status, setStatus] = useState<number>(activity?.ACTIVITY_STATUS || 0)
+
+    const handleSubmit = async (data: Data) => {
         try {
             const response = await fetch('http://localhost:3001/activity/edit', {
                 method: 'POST',
@@ -63,10 +70,6 @@ export default function EditActivity({ handleCloseModal, activity }: Props) {
             console.log('Error:', err)
         }
     }
-
-    useEffect(() => {
-        console.log(activity)
-    }, [])
 
     return (
         <div className={styles.modal_container}>
@@ -105,15 +108,41 @@ export default function EditActivity({ handleCloseModal, activity }: Props) {
                     className={styles.form_container}
                 >
                     <div className={styles.date_container}>
-                        <input className={styles.input} type="date" name='date' value={activity?.ACTIVITY_DATE} />
-                        <input className={styles.input} type="date" name='dateEnd' value={activity?.ACTIVITY_DATE_END} />
+                        <input
+                            className={styles.input}
+                            type="date"
+                            name='date'
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                        />
+                        <input
+                            className={styles.input}
+                            type="date"
+                            name='dateEnd'
+                            value={dateEnd}
+                            onChange={(e) => setDateEnd(e.target.value)}
+                        />
                     </div>
 
-                    <input className={styles.input} type="text" placeholder='Title' name='title' value={activity?.ACTIVITY_TITLE} />
-                    <textarea className={styles.input} placeholder='Descrição' rows={5} name='description' />
+                    <input
+                        className={styles.input}
+                        type="text"
+                        placeholder='Title'
+                        name='title'
+                        value={title}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
+                    <textarea
+                        className={styles.input}
+                        placeholder='Descrição'
+                        rows={5}
+                        name='description'
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
 
                     <div className={styles.date_container}>
-                        <Priority name={'priority'} />
+                        <Priority name={'priority'} value={priority} />
                         <Status name={'status'} />
                     </div>
 

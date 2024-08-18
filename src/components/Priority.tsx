@@ -43,14 +43,15 @@ function IconContainer(props: IconContainerProps) {
 }
 
 interface Props {
-    name: string
+    name: string,
+    value?: number
 }
 
-export default function Priority({ name }: Props) {
+export default function Priority({ name, value }: Props) {
     return (
         <StyledRating
             name={name}
-            defaultValue={1}
+            defaultValue={value ? value : 1}
             IconContainerComponent={IconContainer}
             getLabelText={(value: number) => customIcons[value].label}
             highlightSelectedOnly

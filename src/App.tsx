@@ -42,7 +42,6 @@ function App() {
   }
 
   const handleOpenEditActivityModal = (id: number) => {
-    console.log('id recebido:', id);
     setIdToEdit(id);
     setOpenEditActivityModal(true);
   };
@@ -97,7 +96,7 @@ function App() {
     <>
       <div className='viewport'>
         <div className='calendar_container'>
-          <Calendar handleDateClick={handleDateClick} />
+          <Calendar activities={activities} handleDateClick={handleDateClick} />
         </div>
 
         <div className="activities_container">

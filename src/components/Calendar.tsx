@@ -2,20 +2,33 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
 
-interface Props{
-    handleDateClick: (arg: any) => void
+interface Activity {
+    ACTIVITY_CREATE_AT: string,
+    ACTIVITY_DATE: string,
+    ACTIVITY_DATE_END: string,
+    ACTIVITY_DESCRIPTION: string,
+    ACTIVITY_ID: number,
+    ACTIVITY_PRIORITY: number,
+    ACTIVITY_STATUS: number,
+    ACTIVITY_TITLE: string,
+    ACTIVITY_ACTIVE: boolean
 }
 
-export default function Calendar({ handleDateClick }: Props) {
+interface Props {
+    activities: Activity[]
+    handleDateClick: (arg: any) => void,
+}
+
+export default function Calendar({ activities, handleDateClick }: Props) {
 
     return (
         <FullCalendar
             plugins={[dayGridPlugin, interactionPlugin]}
             initialView="dayGridMonth"
-            events={[
-                { title: 'event 1', date: '2024-08-12' },
-                { title: 'event 2', date: '2024-08-20' }
-            ]}
+            events={activities.map((activity) => ({
+                title: activity.ACTIVITY_TITLE,
+                date: activity.ACTIVITY_DATE
+            }))}
             dateClick={handleDateClick}
         />
     )
