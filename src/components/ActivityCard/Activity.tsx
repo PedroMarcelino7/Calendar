@@ -90,7 +90,7 @@ export default function Activity({ activity }: Props) {
                 className={styles.activity_card}
             >
                 <div>
-                    <h1>{activity.ACTIVITY_TITLE}</h1>
+                    <h1 className={styles.title}>{activity.ACTIVITY_TITLE}</h1>
                     <h3>
                         {(() => {
                             const [year, month, day] = activity.ACTIVITY_DATE.split('-');
