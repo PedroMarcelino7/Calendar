@@ -1,8 +1,10 @@
+import { LinearProgress } from '@mui/material'
 import SubmitButton from '../Buttons/SubmitButton'
 import Priority from '../Priority'
 import Status from '../Status'
 import styles from './CreateActivity.module.css'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
+import { useState } from 'react'
 
 interface Data {
     title: string,
@@ -20,7 +22,11 @@ interface Props {
 }
 
 export default function CreateActivity({ handleCloseModal, selectedDate, setSelectedDate }: Props) {
+    const [loading, setLoading] = useState<boolean>(false)
+
     const handleSubmit = async (data: Data) => {
+        setLoading(true)
+
         try {
             const response = await fetch('http://localhost:3001/activity', {
                 method: 'POST',
@@ -42,6 +48,8 @@ export default function CreateActivity({ handleCloseModal, selectedDate, setSele
             }
 
             const result = await response.json();
+            setLoading(false)
+            handleCloseModal()
 
             console.log('Success:', result);
         } catch (err: any) {
@@ -100,7 +108,13 @@ export default function CreateActivity({ handleCloseModal, selectedDate, setSele
 
                     <SubmitButton text='Create activity' />
                 </form>
+
+                {loading &&
+                    <div className={styles.loading_bar}>
+                        <LinearProgress sx={{ height: '10px' }} />
+                    </div>
+                }
             </div>
-        </div >
+        </div>
     )
 }
