@@ -141,7 +141,7 @@ function App() {
 
       {loading && <Loading />}
 
-      {openCreateActivityModal && <CreateActivity handleCloseModal={handleCloseCreateActivityModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />}
+      {openCreateActivityModal && <CreateActivity handleCloseModal={handleCloseCreateActivityModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} getActivies={getActivies} />}
       {openEditActivityModal && <EditActivity handleCloseModal={handleCloseEditActivityModal} activity={getActivityById(idToEdit)} />}
     </>
   )
