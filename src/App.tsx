@@ -8,7 +8,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
 import Activity from './components/ActivityCard/Activity';
 import Calendar from './components/Calendar'
-import CreateActivity from './components/Modal/CreateActivity';
+import CreateActivity from './components/Modal/CreateActivity/CreateActivity';
 import { useEffect, useState } from 'react';
 import EditActivity from './components/Modal/EditActivity/EditActivity';
 import Loading from './components/Loading/Loading';
