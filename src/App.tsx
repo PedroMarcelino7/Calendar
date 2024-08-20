@@ -131,7 +131,7 @@ function App() {
             <div className="activities">
               {
                 activities.map((activity, index) => (
-                  <Activity key={index} activity={activity} handleOpenEditActivityModal={handleOpenEditActivityModal} />
+                  <Activity key={index} activity={activity} handleOpenEditActivityModal={handleOpenEditActivityModal} getActivities={getActivities} />
                 ))
               }
             </div>

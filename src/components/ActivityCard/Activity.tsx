@@ -6,11 +6,6 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import EditIcon from '@mui/icons-material/Edit';
 import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 
-interface Props {
-    activity: Activity,
-    handleOpenEditActivityModal: (id: number) => void
-}
-
 interface Activity {
     ACTIVITY_CREATE_AT: string,
     ACTIVITY_DATE: string,
@@ -23,7 +18,13 @@ interface Activity {
     ACTIVITY_ACTIVE: boolean
 }
 
-export default function Activity({ activity, handleOpenEditActivityModal }: Props) {
+interface Props {
+    activity: Activity,
+    handleOpenEditActivityModal: (id: number) => void,
+    getActivities: (filter: string) => Promise<void>
+}
+
+export default function Activity({ activity, handleOpenEditActivityModal, getActivities }: Props) {
     const getBorderColor = (status: number) => {
         if (status === 1) {
             return 'rgba(254, 151, 5, 1)'
@@ -71,6 +72,7 @@ export default function Activity({ activity, handleOpenEditActivityModal }: Prop
             }
 
             const result = await response.json();
+            getActivities('priority')
 
             console.log('Archived:', result);
         } catch (err: any) {

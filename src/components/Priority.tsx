@@ -45,7 +45,7 @@ function IconContainer(props: IconContainerProps) {
 interface Props {
     name: string;
     value?: number;
-    onChange: (value: number) => void;
+    onChange?: (value: number) => void;
 }
 
 export default function Priority({ name, value, onChange }: Props) {
@@ -57,8 +57,10 @@ export default function Priority({ name, value, onChange }: Props) {
             getLabelText={(value: number) => customIcons[value].label}
             highlightSelectedOnly
             onChange={(_, newValue) => {
-                if (newValue !== null) {
-                    onChange(newValue);
+                if (onChange) {
+                    if (newValue !== null) {
+                        onChange(newValue);
+                    }
                 }
             }}
         />
