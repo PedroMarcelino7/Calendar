@@ -19,10 +19,10 @@ interface Props {
     handleCloseModal: () => void,
     selectedDate: string,
     setSelectedDate: any,
-    getActivies: (filter: string) => Promise<void>
+    getActivities: (filter: string) => Promise<void>
 }
 
-export default function CreateActivity({ handleCloseModal, selectedDate, setSelectedDate, getActivies }: Props) {
+export default function CreateActivity({ handleCloseModal, selectedDate, setSelectedDate, getActivities }: Props) {
     const [loading, setLoading] = useState<boolean>(false)
 
     const handleSubmit = async (data: Data) => {
@@ -51,7 +51,7 @@ export default function CreateActivity({ handleCloseModal, selectedDate, setSele
             const result = await response.json();
             setLoading(false)
             handleCloseModal()
-            getActivies('priority')
+            getActivities('priority')
 
             console.log('Success:', result);
         } catch (err: any) {

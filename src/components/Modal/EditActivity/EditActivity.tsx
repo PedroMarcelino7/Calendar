@@ -31,10 +31,11 @@ interface Activity {
 
 interface Props {
     handleCloseModal: () => void,
-    activity: Activity | undefined
+    activity: Activity | undefined,
+    getActivities: (filter: string) => Promise<void>
 }
 
-export default function EditActivity({ handleCloseModal, activity }: Props) {
+export default function EditActivity({ handleCloseModal, activity, getActivities }: Props) {
     const [title, setTitle] = useState<string>(activity?.ACTIVITY_TITLE || '')
     const [date, setDate] = useState<string>(activity?.ACTIVITY_DATE || '')
     const [dateEnd, setDateEnd] = useState<string>(activity?.ACTIVITY_DATE_END || '')
@@ -71,6 +72,7 @@ export default function EditActivity({ handleCloseModal, activity }: Props) {
 
             setLoading(false)
             handleCloseModal()
+            getActivities('priority')
 
             console.log('Success:', result);
         } catch (err: any) {
@@ -149,7 +151,7 @@ export default function EditActivity({ handleCloseModal, activity }: Props) {
                     />
 
                     <div className={styles.date_container}>
-                        <Priority name={'priority'} value={priority} />
+                        <Priority name={'priority'} value={priority} onChange={setPriority} />
                         <Status name={'status'} />
                     </div>
 

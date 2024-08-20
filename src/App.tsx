@@ -56,7 +56,7 @@ function App() {
     return activities.find(activity => activity.ACTIVITY_ID === id);
   };
 
-  const getActivies = async (filter: string) => {
+  const getActivities = async (filter: string) => {
     try {
       const response = await fetch(`http://localhost:3001/activities/filter/${filter}`, {
         method: 'GET',
@@ -92,7 +92,7 @@ function App() {
   }
 
   useEffect(() => {
-    getActivies('priority')
+    getActivities('priority')
   }, [])
 
   return (
@@ -111,17 +111,17 @@ function App() {
               </div>
 
               <div className="filters">
-                <div className="filter_box" onClick={() => getActivies('priority')}>
+                <div className="filter_box" onClick={() => getActivities('priority')}>
                   <FlagRoundedIcon />
                   <h3>Priority</h3>
                 </div>
 
-                <div className="filter_box" onClick={() => getActivies('date')}>
+                <div className="filter_box" onClick={() => getActivities('date')}>
                   <CalendarMonthRoundedIcon />
                   <h3>Date</h3>
                 </div>
 
-                <div className="filter_box" onClick={() => getActivies('status')}>
+                <div className="filter_box" onClick={() => getActivities('status')}>
                   <ChecklistRoundedIcon />
                   <h3>Status</h3>
                 </div>
@@ -141,8 +141,8 @@ function App() {
 
       {loading && <Loading />}
 
-      {openCreateActivityModal && <CreateActivity handleCloseModal={handleCloseCreateActivityModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} getActivies={getActivies} />}
-      {openEditActivityModal && <EditActivity handleCloseModal={handleCloseEditActivityModal} activity={getActivityById(idToEdit)} />}
+      {openCreateActivityModal && <CreateActivity handleCloseModal={handleCloseCreateActivityModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} getActivities={getActivities} />}
+      {openEditActivityModal && <EditActivity handleCloseModal={handleCloseEditActivityModal} activity={getActivityById(idToEdit)} getActivities={getActivities} />}
     </>
   )
 }
