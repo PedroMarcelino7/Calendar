@@ -6,6 +6,7 @@ import SubmitButton from '../../Buttons/SubmitButton'
 import Priority from '../../Priority'
 import Status from '../../Status'
 import { useState } from 'react'
+import { LinearProgress } from '@mui/material'
 
 interface Data {
     title: string,
@@ -40,8 +41,11 @@ export default function EditActivity({ handleCloseModal, activity }: Props) {
     const [description, setDescription] = useState<string>(activity?.ACTIVITY_DESCRIPTION || '')
     const [priority, setPriority] = useState<number>(activity?.ACTIVITY_PRIORITY || 0)
     // const [status, setStatus] = useState<number>(activity?.ACTIVITY_STATUS || 0)
+    const [loading, setLoading] = useState<boolean>(false)
 
     const handleSubmit = async (data: Data) => {
+        setLoading(true)
+
         try {
             const response = await fetch('http://localhost:3001/activity/edit', {
                 method: 'POST',
@@ -64,6 +68,9 @@ export default function EditActivity({ handleCloseModal, activity }: Props) {
             }
 
             const result = await response.json();
+
+            setLoading(false)
+            handleCloseModal()
 
             console.log('Success:', result);
         } catch (err: any) {
@@ -148,7 +155,13 @@ export default function EditActivity({ handleCloseModal, activity }: Props) {
 
                     <SubmitButton text='Edit activity' />
                 </form>
+
+                {loading &&
+                    <div className={styles.loading_bar}>
+                        <LinearProgress sx={{ height: '10px' }} />
+                    </div>
+                }
             </div>
-        </div >
+        </div>
     )
 }

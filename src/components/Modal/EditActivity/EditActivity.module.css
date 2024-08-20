@@ -11,9 +11,8 @@
     z-index: 1000;
 
     .modal_box {
-        background-color: rgba(255, 255, 255, 1);
-        max-width: 500px;
         width: 100%;
+        max-width: 500px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -21,7 +20,9 @@
         border-radius: 10px;
         padding-block: 1.5rem;
         padding-inline: 2.5rem;
-        z-index: 1000;
+        background-color: rgba(255, 255, 255, 1);
+        position: relative;
+        overflow: hidden;
 
         .header {
             width: 100%;
@@ -70,6 +71,13 @@
                 min-height: 100px;
                 max-height: 300px;
             }
+        }
+
+        .loading_bar {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
         }
     }
 }
