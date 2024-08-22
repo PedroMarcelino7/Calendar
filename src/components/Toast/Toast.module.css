@@ -25,9 +25,17 @@
         }
     }
 
-    .title {
-        font-size: 1.25rem;
+    .content_box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+
+        .title {
+            font-size: 1.25rem;
+        }
     }
+
 
     .progress {
         position: absolute;

@@ -1,5 +1,5 @@
 import { LinearProgress } from '@mui/material'
-import SubmitButton from '../../Buttons/SubmitButton'
+import SubmitButton from '../../Buttons/SubmitButton/SubmitButton'
 import Priority from '../../Priority'
 import Status from '../../Status'
 import styles from './CreateActivity.module.css'

@@ -2,7 +2,7 @@ import styles from './EditActivity.module.css'
 
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 
-import SubmitButton from '../../Buttons/SubmitButton'
+import SubmitButton from '../../Buttons/SubmitButton/SubmitButton'
 import Priority from '../../Priority'
 import Status from '../../Status'
 import { useState } from 'react'
