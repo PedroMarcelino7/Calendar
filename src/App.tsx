@@ -27,6 +27,7 @@ interface Activity {
 }
 
 function App() {
+  const [openToast, setOpenToast] = useState<boolean>(false)
   const [loading, setLoading] = useState<boolean>(true)
   const [activities, setActivities] = useState<Activity[]>([])
   const [openCreateActivityModal, setOpenCreateActivityModal] = useState<Boolean>(false)
@@ -52,6 +53,14 @@ function App() {
   const handleCloseEditActivityModal = () => {
     setOpenEditActivityModal(false);
   };
+
+  const handleOpenToast = () => {
+    setOpenToast(true)
+  }
+
+  const handleCloseToast = () => {
+    setOpenToast(false)
+  }
 
   const getActivityById = (id: number) => {
     return activities.find(activity => activity.ACTIVITY_ID === id);
@@ -132,7 +141,7 @@ function App() {
             <div className="activities">
               {
                 activities.map((activity, index) => (
-                  <Activity key={index} activity={activity} handleOpenEditActivityModal={handleOpenEditActivityModal} getActivities={getActivities} />
+                  <Activity key={index} activity={activity} handleOpenEditActivityModal={handleOpenEditActivityModal} getActivities={getActivities} handleOpenToast={handleOpenToast} />
                 ))
               }
             </div>
@@ -144,7 +153,7 @@ function App() {
 
       {openCreateActivityModal && <CreateActivity handleCloseModal={handleCloseCreateActivityModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} getActivities={getActivities} />}
       {openEditActivityModal && <EditActivity handleCloseModal={handleCloseEditActivityModal} activity={getActivityById(idToEdit)} getActivities={getActivities} />}
-      <Toast />
+      {openToast && <Toast handleCloseToast={handleCloseToast} />}
     </>
   )
 }

@@ -21,10 +21,11 @@ interface Activity {
 interface Props {
     activity: Activity,
     handleOpenEditActivityModal: (id: number) => void,
-    getActivities: (filter: string) => Promise<void>
+    getActivities: (filter: string) => Promise<void>,
+    handleOpenToast: () => void,
 }
 
-export default function Activity({ activity, handleOpenEditActivityModal, getActivities }: Props) {
+export default function Activity({ activity, handleOpenEditActivityModal, getActivities, handleOpenToast }: Props) {
     const getBorderColor = (status: number) => {
         if (status === 1) {
             return 'rgba(254, 151, 5, 1)'
@@ -72,6 +73,7 @@ export default function Activity({ activity, handleOpenEditActivityModal, getAct
             }
 
             const result = await response.json();
+            handleOpenToast()
             getActivities('priority')
 
             console.log('Archived:', result);
