@@ -8,6 +8,7 @@
     border-radius: 10px;
     padding-block: 1rem;
     padding-inline: 2.5rem;
+    overflow: hidden;
 
     .close {
         position: absolute;
@@ -26,5 +27,12 @@
 
     .title {
         font-size: 1.25rem;
+    }
+
+    .progress {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 100%;
     }
 }

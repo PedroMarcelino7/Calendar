@@ -27,7 +27,7 @@ interface Activity {
 }
 
 function App() {
-  const [openToast, setOpenToast] = useState<boolean>(false)
+  const [openToast, setOpenToast] = useState<boolean>(true)
   const [loading, setLoading] = useState<boolean>(true)
   const [activities, setActivities] = useState<Activity[]>([])
   const [openCreateActivityModal, setOpenCreateActivityModal] = useState<Boolean>(false)
