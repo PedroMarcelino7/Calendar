@@ -1,0 +1,23 @@
+.toast_container {
+    position: fixed;
+    top: 3rem;
+    right: 3rem;
+    z-index: 1000;
+    background-color: #fff;
+    border: 2px solid rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding-block: 1rem;
+    padding-inline: 2.5rem;
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        cursor: pointer;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+}

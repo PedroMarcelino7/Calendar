@@ -12,6 +12,7 @@ import CreateActivity from './components/Modal/CreateActivity/CreateActivity';
 import { useEffect, useState } from 'react';
 import EditActivity from './components/Modal/EditActivity/EditActivity';
 import Loading from './components/Loading/Loading';
+import Toast from './components/Toast/Toast';
 
 interface Activity {
   ACTIVITY_CREATE_AT: string,
@@ -143,6 +144,7 @@ function App() {
 
       {openCreateActivityModal && <CreateActivity handleCloseModal={handleCloseCreateActivityModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} getActivities={getActivities} />}
       {openEditActivityModal && <EditActivity handleCloseModal={handleCloseEditActivityModal} activity={getActivityById(idToEdit)} getActivities={getActivities} />}
+      <Toast />
     </>
   )
 }
