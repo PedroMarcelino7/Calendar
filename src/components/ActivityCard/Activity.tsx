@@ -74,7 +74,7 @@ export default function Activity({ activity, handleOpenEditActivityModal, getAct
 
             const result = await response.json();
             handleOpenToast()
-            getActivities('priority')
+            getActivities('date')
 
             console.log('Archived:', result);
         } catch (err: any) {

@@ -72,7 +72,7 @@ export default function EditActivity({ handleCloseModal, activity, getActivities
 
             setLoading(false)
             handleCloseModal()
-            getActivities('priority')
+            getActivities('date')
 
             console.log('Success:', result);
         } catch (err: any) {

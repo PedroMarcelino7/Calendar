@@ -102,7 +102,7 @@ function App() {
   }
 
   useEffect(() => {
-    getActivities('priority')
+    getActivities('date')
   }, [])
 
   return (

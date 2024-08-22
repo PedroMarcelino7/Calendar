@@ -51,7 +51,7 @@ export default function CreateActivity({ handleCloseModal, selectedDate, setSele
             const result = await response.json();
             setLoading(false)
             handleCloseModal()
-            getActivities('priority')
+            getActivities('date')
 
             console.log('Success:', result);
         } catch (err: any) {
