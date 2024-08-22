@@ -40,9 +40,11 @@ export default function Toast({ handleCloseToast, action }: Props) {
                     Atividade arquivada com sucesso!
                 </div>
 
-                <div className={styles.button_box}>
-                    <UndoButton text='Undo' />
-                </div>
+                {action === 'archive' &&
+                    <div className={styles.button_box}>
+                        <UndoButton text='Undo' />
+                    </div>
+                }
             </div>
 
             <div className={styles.progress}>

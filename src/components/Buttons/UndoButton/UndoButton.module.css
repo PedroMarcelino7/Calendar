@@ -1,0 +1,19 @@
+.button {
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 10px;
+    color: #fff;
+    border: 2px solid #fff;
+    background-color: rgba(35, 130, 35, 1);
+    cursor: pointer;
+
+    &:hover {
+        color: rgba(35, 130, 35, 1);
+        border: 2px solid rgba(35, 130, 35, 1);
+        background-color: rgba(35, 130, 35, 0.25);
+
+        transform: scale(0.975);
+    }
+}
