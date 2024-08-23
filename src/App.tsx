@@ -12,6 +12,7 @@ import CreateActivity from './components/Modal/CreateActivity/CreateActivity';
 import { useEffect, useState } from 'react';
 import EditActivity from './components/Modal/EditActivity/EditActivity';
 import Loading from './components/Loading/Loading';
+import Toast from './components/Toast/Toast';
 
 interface Activity {
   ACTIVITY_CREATE_AT: string,
@@ -26,6 +27,8 @@ interface Activity {
 }
 
 function App() {
+  const [openToast, setOpenToast] = useState<boolean>(true)
+  const [action, setAction] = useState<string>('archive')
   const [loading, setLoading] = useState<boolean>(true)
   const [activities, setActivities] = useState<Activity[]>([])
   const [openCreateActivityModal, setOpenCreateActivityModal] = useState<Boolean>(false)
@@ -51,6 +54,15 @@ function App() {
   const handleCloseEditActivityModal = () => {
     setOpenEditActivityModal(false);
   };
+
+  const handleOpenToast = (action: string) => {
+    setAction(action)
+    setOpenToast(true)
+  }
+
+  const handleCloseToast = () => {
+    setOpenToast(false)
+  }
 
   const getActivityById = (id: number) => {
     return activities.find(activity => activity.ACTIVITY_ID === id);
@@ -131,7 +143,13 @@ function App() {
             <div className="activities">
               {
                 activities.map((activity, index) => (
-                  <Activity key={index} activity={activity} handleOpenEditActivityModal={handleOpenEditActivityModal} getActivities={getActivities} />
+                  <Activity
+                    key={index}
+                    activity={activity}
+                    handleOpenEditActivityModal={handleOpenEditActivityModal}
+                    getActivities={getActivities}
+                    handleOpenToast={handleOpenToast}
+                  />
                 ))
               }
             </div>
@@ -143,6 +161,7 @@ function App() {
 
       {openCreateActivityModal && <CreateActivity handleCloseModal={handleCloseCreateActivityModal} selectedDate={selectedDate} setSelectedDate={setSelectedDate} getActivities={getActivities} />}
       {openEditActivityModal && <EditActivity handleCloseModal={handleCloseEditActivityModal} activity={getActivityById(idToEdit)} getActivities={getActivities} />}
+      {openToast && <Toast handleCloseToast={handleCloseToast} action={action} />}
     </>
   )
 }

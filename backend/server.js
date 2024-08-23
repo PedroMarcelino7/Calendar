@@ -77,7 +77,28 @@ app.post('/activity/archive', (req, res) => {
 
     connection.query(query, values, (err, results) => {
         if (err) {
-            console.error("Error creating activity:", err);
+            console.error("Error archiving activity:", err);
+            return res.status(500).send(err);
+        }
+
+        res.status(201).json(results);
+    });
+});
+
+app.post('/activity/unarchive', (req, res) => {
+    const { id } = req.body;
+
+    const query = `
+        UPDATE ACTIVITY
+        SET ACTIVITY_ACTIVE = 1
+        WHERE ACTIVITY_ID = ?
+    `;
+
+    const values = [id];
+
+    connection.query(query, values, (err, results) => {
+        if (err) {
+            console.error("Error unarchiving activity:", err);
             return res.status(500).send(err);
         }
 

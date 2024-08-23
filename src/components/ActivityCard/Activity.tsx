@@ -22,9 +22,10 @@ interface Props {
     activity: Activity,
     handleOpenEditActivityModal: (id: number) => void,
     getActivities: (filter: string) => Promise<void>,
+    handleOpenToast: (action: string) => void
 }
 
-export default function Activity({ activity, handleOpenEditActivityModal, getActivities }: Props) {
+export default function Activity({ activity, handleOpenEditActivityModal, getActivities, handleOpenToast }: Props) {
     const [openCardId, setOpenCardId] = useState<number | null>(null);
 
     const getBorderColor = (status: number) => {
@@ -72,6 +73,7 @@ export default function Activity({ activity, handleOpenEditActivityModal, getAct
             }
 
             const result = await response.json();
+            handleOpenToast('archive')
             getActivities('date')
 
             console.log('Archived:', result);
