@@ -29,9 +29,10 @@ export default function Calendar({ activities, handleDateClick }: Props) {
             events={activities.map((activity) => ({
                 title: activity.ACTIVITY_TITLE,
                 date: activity.ACTIVITY_DATE,
-                color: `${activity.ACTIVITY_STATUS === 1 ? 'orange' : (activity.ACTIVITY_STATUS === 2 ? 'blue' : 'green')}`
+                color: `${activity.ACTIVITY_STATUS === 1 ? 'orange' : (activity.ACTIVITY_STATUS === 2 ? 'blue' : 'green')}`,
+                id: activity.ACTIVITY_ID.toString()
             }))}
-            eventClick={(event: EventClickArg) => console.log(event)}
+            eventClick={(event: EventClickArg) => console.log(event.event.id)}
             dateClick={handleDateClick}
         />
     )

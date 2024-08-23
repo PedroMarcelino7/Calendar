@@ -22,7 +22,7 @@ interface Props {
     activity: Activity,
     handleOpenEditActivityModal: (id: number) => void,
     getActivities: (filter: string) => Promise<void>,
-    handleOpenToast: (action: string) => void
+    handleOpenToast: (action: string, id: number) => void
 }
 
 export default function Activity({ activity, handleOpenEditActivityModal, getActivities, handleOpenToast }: Props) {
@@ -73,7 +73,7 @@ export default function Activity({ activity, handleOpenEditActivityModal, getAct
             }
 
             const result = await response.json();
-            handleOpenToast('archive')
+            handleOpenToast('archive', id)
             getActivities('date')
 
             console.log('Archived:', result);

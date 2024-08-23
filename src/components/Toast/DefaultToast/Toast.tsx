@@ -2,14 +2,15 @@ import styles from './Toast.module.css'
 import CloseIcon from '@mui/icons-material/Close';
 import { LinearProgress } from '@mui/material'
 import { useEffect, useState } from 'react';
-import UndoButton from '../Buttons/UndoButton/UndoButton';
+import UndoButton from '../../Buttons/UndoButton/UndoButton';
 
 interface Props {
     handleCloseToast: () => void,
-    action: string
+    action: string,
+    unarchiveActivity: () => void
 }
 
-export default function Toast({ handleCloseToast, action }: Props) {
+export default function Toast({ handleCloseToast, action, unarchiveActivity }: Props) {
     const [progress, setProgress] = useState<number>(0)
 
     const updateProgress = () => {
@@ -21,6 +22,11 @@ export default function Toast({ handleCloseToast, action }: Props) {
                 setProgress(progress + 3)
             }
         }, 200);
+    }
+
+    const handleUnarchiveActivity = () => {
+        unarchiveActivity()
+        handleCloseToast()
     }
 
     useEffect(() => {
@@ -43,6 +49,7 @@ export default function Toast({ handleCloseToast, action }: Props) {
                 {action === 'archive' &&
                     <div
                         className={styles.button_box}
+                        onClick={handleUnarchiveActivity}
                     >
                         <UndoButton text='Undo' />
                     </div>
