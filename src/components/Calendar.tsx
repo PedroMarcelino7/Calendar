@@ -27,7 +27,8 @@ export default function Calendar({ activities, handleDateClick }: Props) {
             initialView="dayGridMonth"
             events={activities.map((activity) => ({
                 title: activity.ACTIVITY_TITLE,
-                date: activity.ACTIVITY_DATE
+                date: activity.ACTIVITY_DATE,
+                color: `${activity.ACTIVITY_STATUS === 1 ? 'orange' : (activity.ACTIVITY_STATUS === 2 ? 'blue' : 'green')}`
             }))}
             eventClick={() => alert('teste')}
             dateClick={handleDateClick}
