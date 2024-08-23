@@ -1,6 +1,7 @@
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction"
+import { EventClickArg } from '@fullcalendar/core'
 
 interface Activity {
     ACTIVITY_CREATE_AT: string,
@@ -30,7 +31,7 @@ export default function Calendar({ activities, handleDateClick }: Props) {
                 date: activity.ACTIVITY_DATE,
                 color: `${activity.ACTIVITY_STATUS === 1 ? 'orange' : (activity.ACTIVITY_STATUS === 2 ? 'blue' : 'green')}`
             }))}
-            eventClick={() => alert('teste')}
+            eventClick={(event: EventClickArg) => console.log(event)}
             dateClick={handleDateClick}
         />
     )
