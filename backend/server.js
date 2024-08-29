@@ -9,9 +9,10 @@ const app = express();
 const SECRET_KEY = 'logged';
 
 const dbHost = process.env.DB_HOST;
+const corsOrigin = process.env.CORS_ORIGIN;
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: corsOrigin,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
 }));
