@@ -58,7 +58,7 @@ export default function Activity({ activity, handleOpenEditActivityModal, getAct
 
     const archiveActivity = async (id: number) => {
         try {
-            const response = await fetch('https://my-notes-lake-five.vercel.app/activity/archive', {
+            const response = await fetch('http://localhost:3001/activity/archive', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
