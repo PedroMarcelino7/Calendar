@@ -29,7 +29,7 @@ export default function CreateActivity({ handleCloseModal, selectedDate, setSele
         setLoading(true)
 
         try {
-            const response = await fetch('http://localhost:3001/activity', {
+            const response = await fetch('https://my-notes-lake-five.vercel.app/activity', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

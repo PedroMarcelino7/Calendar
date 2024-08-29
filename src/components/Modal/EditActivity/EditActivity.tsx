@@ -48,7 +48,7 @@ export default function EditActivity({ handleCloseModal, activity, getActivities
         setLoading(true)
 
         try {
-            const response = await fetch('http://localhost:3001/activity/edit', {
+            const response = await fetch('https://my-notes-lake-five.vercel.app/activity/edit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

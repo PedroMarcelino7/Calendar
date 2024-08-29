@@ -6,7 +6,7 @@ const app = express();
 const SECRET_KEY = 'logged';
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://my-notes-lake-five.vercel.app',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
 }));
