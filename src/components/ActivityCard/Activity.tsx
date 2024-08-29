@@ -6,6 +6,8 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import EditIcon from '@mui/icons-material/Edit';
 import FlagRoundedIcon from '@mui/icons-material/FlagRounded';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
 interface Activity {
     ACTIVITY_CREATE_AT: string,
     ACTIVITY_DATE: string,
@@ -58,7 +60,7 @@ export default function Activity({ activity, handleOpenEditActivityModal, getAct
 
     const archiveActivity = async (id: number) => {
         try {
-            const response = await fetch('http://localhost:3001/activity/archive', {
+            const response = await fetch(`${baseUrl}/activity/archive`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

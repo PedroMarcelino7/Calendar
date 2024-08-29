@@ -5,6 +5,8 @@ import { connection } from './db.js';
 const app = express();
 const SECRET_KEY = 'logged';
 
+
+
 app.use(cors({
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST'],

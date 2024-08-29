@@ -6,6 +6,8 @@ import styles from './CreateActivity.module.css'
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
 import { useState } from 'react'
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
 interface Data {
     title: string,
     date: string,
@@ -29,7 +31,7 @@ export default function CreateActivity({ handleCloseModal, selectedDate, setSele
         setLoading(true)
 
         try {
-            const response = await fetch('http://localhost:3001/activity', {
+            const response = await fetch(`${baseUrl}/activity`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

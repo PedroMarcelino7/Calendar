@@ -8,6 +8,8 @@ import Status from '../../Status'
 import { useState } from 'react'
 import { LinearProgress } from '@mui/material'
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
 interface Data {
     title: string,
     date: string,
@@ -48,7 +50,7 @@ export default function EditActivity({ handleCloseModal, activity, getActivities
         setLoading(true)
 
         try {
-            const response = await fetch('http://localhost:3001/activity/edit', {
+            const response = await fetch(`${baseUrl}/activity/edit`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

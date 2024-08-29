@@ -14,6 +14,8 @@ import EditActivity from './components/Modal/EditActivity/EditActivity';
 import Loading from './components/Loading/Loading';
 import Toast from './components/Toast/DefaultToast/Toast';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
 interface Activity {
   ACTIVITY_CREATE_AT: string,
   ACTIVITY_DATE: string,
@@ -75,7 +77,7 @@ function App() {
 
   const getActivities = async (filter: string) => {
     try {
-      const response = await fetch(`http://localhost:3001/activities/filter/${filter}`, {
+      const response = await fetch(`${baseUrl}/activities/filter/${filter}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
