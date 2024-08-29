@@ -1,11 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import { connection } from './db.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 const SECRET_KEY = 'logged';
 
-
+const dbHost = process.env.DB_HOST;
 
 app.use(cors({
     origin: 'http://localhost:5173',
